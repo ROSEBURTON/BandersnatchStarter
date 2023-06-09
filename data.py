@@ -5,6 +5,7 @@ from pymongo import MongoClient  # we pass in argument os.getenv here to start c
 import os  # using operating system for access to database using getenv
 
 
+#  code reformatting with
 class Database:  # in main.py we say from app.data import Database names case-sensitive
     def __init__(self):
         load_dotenv()
@@ -16,12 +17,11 @@ class Database:  # in main.py we say from app.data import Database names case-se
         for _ in range(amount):  # for each in range of (cyan number)
             monster = Monster().to_dict()
             self.collection.insert_one(monster)
-        return
 
     def reset(self, amount=1000):
         for _ in range(amount):
-          # deletes all documents from the collection
-          self.collection.delete_many({})  # .collection.delete_many({}) term for Mongo
+            #  deletes all documents from the collection
+            self.collection.delete_many({})  # .collection.delete_many({}) term for Mongo
 
     def count(self) -> int:
         return self.collection.count_documents({})  # collection.count_documents({} term for Mongo
@@ -39,7 +39,7 @@ class Database:  # in main.py we say from app.data import Database names case-se
 
 if __name__ == '__main__':
     db = Database()
-    #db.reset()  # resets seeded number
+    # db.reset()  # resets seeded number
     db.seed(1000)
     print(db.count())
     print(list(db.collection.find({}, {"_id": 0})))
